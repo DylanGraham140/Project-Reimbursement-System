@@ -1,0 +1,47 @@
+<html style="background: url(bg2.jpg); background-size: cover;">
+
+<head>
+    <link href="indexlayout.css" rel="stylesheet" type="text/css">
+    <title>Project 1 - The MCR starter </title>
+</head>
+
+<body>
+    <div id="LoginMang"></div>
+    <h2
+        style="text-align: center; color: rgb(255, 255, 255); position: relative; text-shadow: 0px -1px 4px #fff, 0px -2px 10px #ff0, 0px -10px 20px #ff8000, 0px -18px 40px red;">
+        Welcome to the MCR reimbursement system!</h2>
+
+
+    <div class="wrapper" style="left: 60%; top: 60%; position: absolute;">
+        <div class="spark spark1"></div>
+        <div class="spark spark2"></div>
+        <div class="spark spark3"></div>
+        <div class="spark spark4"></div>
+        <div class="spark spark5"></div>
+        <div class="spark spark6"></div>
+        <div class="spark spark7"></div>
+        <div class="spark spark8"></div>
+        <div class="spark spark9"></div>
+    </div>
+    <a href="employeelogin.html" target="_blank">
+        <img style="left: 56%; top: 67%; width: 150px; position: fixed;" src="darksg.gif">
+    </a>
+    <div style="filter:alpha(opacity=50); opacity:0;">
+        <a href="managerlogin.html" target="_blank">
+            <img style="left: 870px; top: 630px; width: 200px; height: 200px; position: absolute;" src="bg2.jpg">
+        </a>
+    </div>
+
+
+    <script>
+        document.getElementById("manager-login-btn").addEventListener("click", function () {
+            window.open("managerlogin.html", "_self");
+        })
+
+        document.getElementById("employee-login-btn").addEventListener("click", function () {
+            window.open("employeelogin.html", "_self");
+        })
+    </script>
+</body>
+
+</html>
