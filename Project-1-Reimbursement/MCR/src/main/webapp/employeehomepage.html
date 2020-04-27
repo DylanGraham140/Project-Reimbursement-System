@@ -1,0 +1,106 @@
+<html ><head></head><body style='background: url("fireload.jpg");'>
+
+
+    <meta charset="ISO-8859-1">
+    <title>employeehomepage</title>
+
+    <h1 style="text-align: center; color: white;">Reimbursement App</h1>
+
+    <p style="color: white;">Welcome back KoopaUp10 </p>
+
+    <h3 style="color: white;">Reimbursements</h3>
+
+    <input id="title" type="text" placeholder="Where did you get this">
+    <input id="cost" type="number" placeholder="How many souls">
+    <input id="reason" type="text" placeholder="Why do you want to kindle this bonfire">
+    <button id="addReimbursementBtn">Add more souls</button>
+    <a href="http://localhost:8080/MCR/index.html" target="_blank">
+        <img style="left: 60%; top: 12%; width: 150px; position: fixed;" src="darksg.gif">
+	</a>
+
+
+    <h3>All Reimbursement</h3>
+    <button id="allReimbursementBtn">Get All Reimbursements</button>
+    <button id="Cleartable">Cleartable</button>
+
+
+    <table id="rTable" style="border: 2px; border-image: none; left: 45%; top: 40%; width: 350px; height: 250px; text-align: center; color: white; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; position: absolute;">
+        <thead>
+            <tr style="border: 2px solid black;">
+                <th>Title</th>
+                <th>Description</th>
+                <th>Stats?</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+    <tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody><tbody></tbody></table>
+
+
+    <script type="text/javascript">
+
+        document.getElementById("allReimbursementBtn").addEventListener("click", getAllReimbursement);
+        document.getElementById("addReimbursementBtn").addEventListener("click", addreimbursement);
+        document.getElementById("Cleartable").addEventListener("click", cleartable);
+
+
+        async function getAllReimbursement() {
+
+            cleartable()
+            let httpResponse = await fetch("http://localhost:8080/MCR/MCRservletDispacter2/reimbursementsAll");
+            console.log("Entered the Reimbursement");
+            let reimbursements = await httpResponse.json();
+            console.log(reimbursements);
+
+            for (reimbursement of reimbursements) {
+                rTable.innerHTML = rTable.innerHTML + `<tr><td>${reimbursement.title} </td> 
+            <td> ${reimbursement.reason}</td> <td> ${reimbursement.status}</td> <td> ${reimbursement.cost}</td><td></tr>`;
+            }
+        }
+
+         async function addreimbursement() {
+
+            let reimbursement = {
+                rId: 0,
+                title: "No reason",
+                cost: 1,
+                reason: "Come at me lord of fire man"
+            }
+            // appending the properties to the object after it is created
+            reimbursement.title = document.getElementById("title").value;
+            reimbursement.cost = Number.parseInt(document.getElementById("cost").value);
+            reimbursement.reason = document.getElementById("reason").value;
+
+
+            let settings = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(reimbursement)
+            }
+
+            let httpResponse = await fetch("http://localhost:8080/MCR/MCRservletDispacter2/reimbursementscreatenew", settings);
+
+        }
+         
+         function cleartable() {
+             let rows = document.getElementById("rTable").rows.length - 1;
+             let counter = 1;
+             playsound();
+             while (counter < rows)
+             document.getElementById("rTable").deleteRow(counter);
+             counter++;
+
+         }
+
+        let sound = new Audio();
+        sound.src = "buttonsounds.mp3";
+
+        function playsound() {
+        	sound.play()
+        }
+    </script>
+
+
+
+
+
+</body></html>
